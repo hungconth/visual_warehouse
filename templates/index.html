@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real-time Data Display</title>
+</head>
+<body>
+    <h1>Real-time Data Display</h1>
+    <img id="video-frame" src="" width="1280" height="480">
+    <script>
+        const videoFrame = document.getElementById("video-frame");
+
+        const socket = new WebSocket("ws://localhost:8000/ws");
+
+        socket.onmessage = function (event) {
+            console.log(event.data)
+            videoFrame.src = "data:image/jpeg;base64," + event.data;
+        };
+    </script>
+</body>
+</html>
